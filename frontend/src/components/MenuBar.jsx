@@ -4,6 +4,14 @@ import useUser from '../hooks/useUser';
 
 const MenuBar = () => {
 	const { user } = useUser();
+	const handleLogout = async () => {
+		try {
+			const response = await fetch('/api/auth/logout');
+			console.log(response);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div className='flex flex-col bg-black w-[200px] absolute top-12  text-white  p-2 rounded-lg items-start right-6'>
 			{!user && (
@@ -18,22 +26,26 @@ const MenuBar = () => {
 			)}
 			{user && (
 				<h3 className='text-lg hover:text-gray-500'>
-					<Link to='/register'>Profile</Link>
+					<Link to={'/profile/' + user.id}>Profile</Link>
 				</h3>
 			)}
 			{user && (
 				<h3 className='text-lg hover:text-gray-500'>
-					<Link to='/register'>Write</Link>
+					<Link to='/write'>Write</Link>
 				</h3>
 			)}
-			{user && (
+			{/* {user && (
 				<h3 className='text-lg hover:text-gray-500'>
-					<Link to='/register'>My Blogs</Link>
+					<Link to='/myblogssr'>My Blogs</Link>
 				</h3>
-			)}
+			)} */}
 			{user && (
 				<h3 className='text-lg hover:text-gray-500'>
-					<Link to='/register'>LogOut</Link>
+					<Link
+						onClick={handleLogout}
+						to='/login'>
+						LogOut
+					</Link>
 				</h3>
 			)}
 		</div>

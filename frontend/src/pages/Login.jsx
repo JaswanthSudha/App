@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 const Login = () => {
 	const [email, setEmail] = useState('');
+
 	const [password, setPassword] = useState('');
 	const navigate = useNavigate();
 	const { setUser } = useUser();
+	useEffect(() => {
+		setUser(null);
+	});
 	const [message, setMessage] = useState(null);
 	const handleLogin = async () => {
 		try {

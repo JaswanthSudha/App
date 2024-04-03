@@ -30,8 +30,9 @@ router.put("/:id", verifyToken, async (req, res) => {
 // Delete Post
 router.delete("/:id", verifyToken, async (req, res) => {
     try {
-        await Post.findByIdAndDelete(req.params.id)
-        res.status(200).json("Post is deleted")
+        const post= await Post.findByIdAndDelete(req.params.id)
+        console.log(post)
+        res.status(200).json(post)
 
     }
     catch (error) {
@@ -52,6 +53,7 @@ router.get("/:id", async (req, res) => {
 //Get All Posts
 router.get("/", async (req, res) => {
     const query = req.query
+    console.log(query)
     try {
         const searchFilter = {
             title: { $regex: query.search, $options: "i" }

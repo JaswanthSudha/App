@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
 	const [username, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState(null);
-	const navigate = useNavigate();
-	const [error, setError] = useState(null);
+	// const navigate = useNavigate();
+	const [setError] = useState(null);
 	const handleRegister = async () => {
 		setMessage('');
 		try {

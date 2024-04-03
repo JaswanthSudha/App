@@ -6,6 +6,8 @@ const authRouter = require("./routes/auth")
 const userRouter = require("./routes/user")
 const postRouter = require("./routes/post")
 const commentRouter = require("./routes/comment")
+const multer = require("multer")
+const path = require("path")
 const cookieParser = require("cookie-parser")
 
 
@@ -31,3 +33,25 @@ app.use("/api/auth", authRouter)
 app.use("/api/users", userRouter)
 app.use("/api/posts", postRouter)
 app.use("/api/comments", commentRouter)
+app.use(express.static("public"))
+app.use("/images", express.static(path.join(__dirname, "/images")))
+//image upload
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./public/images")
+    },
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({
+    storage: storage
+})
+app.post("/image/upload", upload.single("file"), (req, res) => {
+    console.log(req.file)
+})
+
+// app.get("/image/get", (req, res) => {
+
+// })
