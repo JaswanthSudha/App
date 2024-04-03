@@ -31,17 +31,18 @@ const CreatePost = () => {
 			categories: cats,
 			photo: file.name,
 		};
-		console.log(file);
-		if (file) {
-			try {
-				const form = new FormData();
-				form.append('file', file);
-				await axios.post('/image/upload', form);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		// const response = await fetch('/api/posts/create', {
+		uploadImage();
+		// // console.log(file);
+		// if (file) {
+		// 	try {
+		// 		const form = new FormData();
+		// 		form.append('file', file);
+		// 		await axios.post('/image/upload', form);
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// }
+		// // const response = await fetch('/api/posts/create', {
 		// 	method: 'POST',
 		// 	body: JSON.stringify(post),
 		// 	headers: {
@@ -52,11 +53,37 @@ const CreatePost = () => {
 		// const json = await response.json();
 		// console.log(json);
 
+		// try {
+		// 	const res = await axios.post('/api/posts/create', post, {
+		// 		withCredentials: true,
+		// 	});
+		// 	console.log(res);
+		// 	navigate('/posts/post/' + res.data._id);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 		try {
-			const res = await axios.post('/api/posts/create', post, {
-				withCredentials: true,
+			const response = await fetch('/api/posts/create', {
+				method: 'POST',
+				body: JSON.stringify(post),
+				headers: {
+					'Content-Type': 'application/json',
+				},
 			});
-			navigate('/posts/post/' + res.data._id);
+			const json = await response.json();
+
+			navigate('/posts/post/' + json._id);
+
+			// console.log(json);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	const uploadImage = async () => {
+		try {
+			const form = new FormData();
+			form.append('file', file);
+			await axios.post('/image/upload', form);
 		} catch (error) {
 			console.log(error);
 		}
@@ -77,6 +104,7 @@ const CreatePost = () => {
 					className='px-4'
 					onChange={(e) => setFile(e.target.files[0])}
 				/>
+				{/* <button onClick={uploadImage}>Upload Image</button> */}
 				<div className='flex flex-col'>
 					<div className='flex items-center space-x-4 md:space-x-8'>
 						<input

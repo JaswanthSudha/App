@@ -1,12 +1,19 @@
-import image from '../images/image.png';
-const ProfilePosts = ({ username, desc, title, updatedAt, createdAt }) => {
+// import image from '../images/image.png';
+const ProfilePosts = ({
+	image,
+	username,
+	desc,
+	title,
+	updatedAt,
+	createdAt,
+}) => {
 	// console.log(p)
 	return (
 		<div className='w-full flex mt-8 space-x-4'>
 			{/* left */}
 			<div className='w-[35%] h-[200px] flex justify-center items-center'>
 				<img
-					src={image}
+					src={'/images/' + image}
 					alt=''
 					className='h-full w-full object-cover'
 				/>

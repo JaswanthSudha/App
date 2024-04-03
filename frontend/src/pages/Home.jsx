@@ -32,7 +32,7 @@ const Home = () => {
 
 			// console.log(json);
 		} catch (error) {
-			console.log(error);
+			console.log('eror' + error);
 			setLoader(false);
 		}
 	};

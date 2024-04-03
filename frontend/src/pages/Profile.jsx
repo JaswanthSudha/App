@@ -29,6 +29,7 @@ const Profile = () => {
 							username={post.username}
 							createdAt={post.createdAt}
 							updatedAt={post.updatedAt}
+							image={post.photo}
 						/>
 					);
 				})}

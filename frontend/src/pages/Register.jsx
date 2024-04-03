@@ -7,7 +7,7 @@ const Register = () => {
 	const [email, setEmail] = useState('');
 	const [message, setMessage] = useState(null);
 	// const navigate = useNavigate();
-	const [setError] = useState(null);
+	const [error, setError] = useState(null);
 	const handleRegister = async () => {
 		setMessage('');
 		try {
