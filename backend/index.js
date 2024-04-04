@@ -16,8 +16,8 @@ mongoose.connect(process.env.STRING)
     .then(() => {
         //listen to the requests 
         //this will only listen to the requests after the connection is establised
-        app.listen(process.env.PORT, () => {
-            console.log("Listening on port ", process.env.PORT);
+        app.listen(4000, () => {
+            console.log("Listening on port ", 4000);
         })
 
     })
@@ -26,7 +26,7 @@ mongoose.connect(process.env.STRING)
         console.log(error);
 
     })
-const __dirname=path.resolve()
+const __dirname = path.resolve()
 //middlewares
 app.use(express.json())
 app.use(cookieParser())
@@ -35,10 +35,10 @@ app.use("/api/users", userRouter)
 app.use("/api/posts", postRouter)
 app.use("/api/comments", commentRouter)
 app.use(express.static("public"))
-app.use(express.static(path.join(__dirname,"/frontend/build")))
+app.use(express.static(path.join(__dirname, "/frontend/build")))
 app.use("/images", express.static(path.join(__dirname, "/images")))
-app.get("*",(req,res)=>{
-    res.sendFile(path.join(__dirname,"frontend","build","index.html"))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"))
 })
 //image upload
 const storage = multer.diskStorage({
