@@ -35,11 +35,12 @@ app.use("/api/users", userRouter)
 app.use("/api/posts", postRouter)
 app.use("/api/comments", commentRouter)
 app.use(express.static("public"))
-app.use(express.static(path.join(__dirname, "/frontend/build")))
+// app.use(express.static(path.join(__dirname, "/frontend/build")))
 app.use("/images", express.static(path.join(__dirname, "/images")))
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "build", "index.html"))
 })
+app.use(express.static(path.join(__dirname, "build")));
 //image upload
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
